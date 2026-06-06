@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - Diary Journey to the Stars</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=Sora:wght@300;600;700&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#333535",
+                      "on-primary-fixed-variant": "#004f58",
+                      "on-secondary-container": "#e299ff",
+                      "surface-container-high": "#282a2b",
+                      "on-surface": "#e2e2e2",
+                      "on-primary": "#00363d",
+                      "error": "#ffb4ab",
+                      "on-tertiary-container": "#59585e",
+                      "surface-tint": "#00daf3",
+                      "primary-fixed-dim": "#00daf3",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-highest": "#333535",
+                      "surface-bright": "#37393a",
+                      "tertiary-fixed": "#e4e1e9",
+                      "surface-dim": "#121414",
+                      "on-secondary-fixed": "#320047",
+                      "on-error": "#690005",
+                      "on-secondary": "#520071",
+                      "secondary-container": "#721199",
+                      "inverse-surface": "#e2e2e2",
+                      "surface-container-low": "#1a1c1c",
+                      "background": "#121414",
+                      "on-primary-fixed": "#001f24",
+                      "error-container": "#93000a",
+                      "on-tertiary-fixed": "#1b1b20",
+                      "surface-container": "#1e2020",
+                      "surface": "#121414",
+                      "outline-variant": "#3b494c",
+                      "primary-container": "#00e5ff",
+                      "on-surface-variant": "#bac9cc",
+                      "inverse-on-surface": "#2f3131",
+                      "on-tertiary": "#303035",
+                      "on-secondary-fixed-variant": "#721199",
+                      "on-primary-container": "#00626e",
+                      "secondary-fixed": "#f8d8ff",
+                      "on-tertiary-fixed-variant": "#47464c",
+                      "secondary": "#ebb2ff",
+                      "outline": "#849396",
+                      "primary": "#c3f5ff",
+                      "tertiary-fixed-dim": "#c8c5cd",
+                      "inverse-primary": "#006875",
+                      "tertiary": "#efebf3",
+                      "on-background": "#e2e2e2",
+                      "secondary-fixed-dim": "#ebb2ff",
+                      "tertiary-container": "#d2cfd6",
+                      "surface-container-lowest": "#0c0f0f",
+                      "primary-fixed": "#9cf0ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "40px",
+                      "gutter": "16px",
+                      "stack-sm": "12px",
+                      "stack-md": "20px",
+                      "container-padding": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Space Mono"
+                      ],
+                      "stats-number": [
+                              "Sora"
+                      ],
+                      "display-lg-mobile": [
+                              "Sora"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Sora"
+                      ],
+                      "headline-md": [
+                              "Sora"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "stats-number": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "300"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "38px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #121414; /* surface */
+            color: #e2e2e2; /* on-surface */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(235, 178, 255, 0.03), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 0.75rem; /* xl */
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+        }
+
+        .neon-glow-intense {
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), inset 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .orbital-ring {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col relative pb-[100px] pt-[80px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-transparent backdrop-blur-xl bg-white/5 border-b border-white/10 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/30">
+<img alt="Astronaut avatar" class="w-full h-full object-cover" data-alt="A close-up profile portrait of an astronaut in a futuristic, sleek white spacesuit. The lighting is cinematic and moody, with a strong electric blue rim light highlighting the contours of the helmet and visor against a deep, dark void background. The aesthetic is visionary and hyper-realistic, conveying a sense of interstellar exploration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1D-U8HrQLXF8dYc6Bs5F7raNlE7PK6h5ZDIQssOHyt2Gt5Yw1WPSJfau_QmwuzwTyMioEM1vwT3zBCAf6HbOWOwqPKTHmBDA0-wzNqlfBIbuLqNZHMp9YKGOb_0xR7lYq1zSQLaZ2Fgup6S--VNBYieUf2qLn2yjKr0-uAuVjsXkZwugLBLzxWJpE7zsI-knABWQSrurVrHI-y_kuV5_qL5vuPWOmpRBn9KGYf1tXiQ4HesiDmr7qyRYCghvQLJIElWZlu9tibIFo"/>
+</div>
+</div>
+<div class="font-label-caps text-label-caps tracking-widest text-primary-fixed-dim">
+            MISSION CONTROL
+        </div>
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-variation-settings: 'FILL' 0;">rocket_launch</span>
+</button>
+</header>
+<main class="flex-grow px-container-padding max-w-5xl mx-auto w-full flex flex-col gap-stack-lg relative z-10">
+<!-- Header Section -->
+<section class="mt-stack-md">
+<div class="inline-block px-3 py-1 rounded-full bg-surface-variant border border-outline-variant font-label-caps text-label-caps text-primary-container mb-stack-sm">
+                LOG ENTRY: STELLAR DAY 42
+            </div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Today's Flight Plan</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl">
+                Navigating through linguistic nebulae and physical fortitude.
+            </p>
+</section>
+<!-- Main Dashboard Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: English Learning & Workout -->
+<div class="md:col-span-8 flex flex-col gap-gutter">
+<!-- English Learning Bento Card -->
+<div class="glass-card p-6 flex flex-col gap-stack-md relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 rounded-full blur-[40px] group-hover:bg-primary-container/20 transition-all duration-700"></div>
+<div class="flex items-center justify-between relative z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 0;">language</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Linguistics</h2>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">SECTOR A</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/50 hover:border-secondary/50 transition-colors">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">VOCABULARY</div>
+<div class="flex items-baseline gap-2">
+<span class="font-stats-number text-stats-number text-secondary">15</span>
+<span class="text-sm text-on-surface-variant">Words</span>
+</div>
+<div class="mt-2 w-full bg-surface-variant rounded-full h-1">
+<div class="bg-secondary h-1 rounded-full w-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/50 hover:border-secondary/50 transition-colors">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">GRAMMAR</div>
+<div class="font-body-md text-body-md text-on-surface">Past Tense Mastery</div>
+<div class="mt-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs text-on-surface-variant">Completed</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/50 mt-2 relative z-10">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">menu_book</span> STUDY REFLECTION
+                        </div>
+<p class="font-body-md text-body-md text-on-surface/80 italic">
+                            "Struggled slightly with irregular verbs, but the spaced repetition is reinforcing neural pathways effectively."
+                        </p>
+</div>
+</div>
+<!-- Workout Log Bento Card -->
+<div class="glass-card p-6 flex flex-col gap-stack-md relative overflow-hidden group">
+<div class="absolute bottom-0 right-0 w-32 h-32 bg-primary-container/10 rounded-full blur-[40px] group-hover:bg-primary-container/20 transition-all duration-700"></div>
+<div class="flex items-center justify-between relative z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 0;">fitness_center</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Physical Log</h2>
+</div>
+<span class="font-label-caps text-label-caps text-primary-container">SECTOR B</span>
+</div>
+<div class="space-y-3 relative z-10">
+<!-- Exercise Item -->
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="text-xs text-primary-container font-label-caps">01</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Push-ups</span>
+</div>
+<div class="font-stats-number text-stats-number text-primary-container">3 <span class="text-sm text-on-surface-variant font-body-md">sets</span></div>
+</div>
+<!-- Exercise Item -->
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="text-xs text-primary-container font-label-caps">02</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Squats</span>
+</div>
+<div class="font-stats-number text-stats-number text-primary-container">20 <span class="text-sm text-on-surface-variant font-body-md">reps</span></div>
+</div>
+<!-- Exercise Item -->
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="text-xs text-primary-container font-label-caps">03</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Plank</span>
+</div>
+<div class="font-stats-number text-stats-number text-primary-container">60 <span class="text-sm text-on-surface-variant font-body-md">sec</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Progress & Motivation -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<!-- Orbital Progress Card -->
+<div class="glass-card p-6 flex flex-col items-center justify-center gap-stack-md relative h-full min-h-[300px]">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant tracking-widest text-center w-full absolute top-6">MISSION PROGRESS</h3>
+<div class="relative w-48 h-48 mt-4 flex items-center justify-center">
+<!-- Background Ring -->
+<svg class="w-full h-full absolute" viewbox="0 0 100 100">
+<circle class="text-surface-variant" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="2"></circle>
+</svg>
+<!-- Foreground Ring (Workout - Primary) -->
+<svg class="w-full h-full absolute orbital-ring" viewbox="0 0 100 100">
+<circle class="neon-glow" cx="50" cy="50" fill="none" r="45" stroke="#00e5ff" stroke-dasharray="283" stroke-dashoffset="70" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<!-- Inner Foreground Ring (English - Secondary) -->
+<svg class="w-full h-full absolute orbital-ring scale-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="#ebb2ff" stroke-dasharray="283" stroke-dashoffset="100" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<!-- Center Content -->
+<div class="flex flex-col items-center justify-center z-10">
+<span class="font-display-lg text-display-lg text-primary-container leading-none">85<span class="text-2xl text-on-surface-variant">%</span></span>
+<span class="font-label-caps text-label-caps text-on-surface mt-1">OPTIMAL</span>
+</div>
+</div>
+<div class="flex justify-center gap-4 w-full text-xs font-label-caps mt-2">
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-primary-container neon-glow"></div>
+<span class="text-on-surface-variant">PHYSICAL</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-on-surface-variant">MENTAL</span>
+</div>
+</div>
+</div>
+<!-- Floating Quote Card -->
+<div class="glass-card p-6 relative overflow-hidden group">
+<!-- Subtle starry background effect in card -->
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMxMjE0MTQiPjwvcmVjdD48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiPjwvcmVjdD48L3N2Zz4=')] opacity-50"></div>
+<div class="relative z-10 flex flex-col items-center text-center gap-4">
+<span class="material-symbols-outlined text-primary-container/50 text-3xl">auto_awesome</span>
+<blockquote class="font-headline-md text-[20px] leading-[28px] text-on-surface font-light tracking-wide">
+                            "To the stars through difficulties."
+                        </blockquote>
+<div class="w-12 h-[1px] bg-primary-container/30"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 pt-4 rounded-t-xl bg-transparent backdrop-blur-[40px] bg-white/5 border-t border-white/10 shadow-[0_-4px_20px_rgba(0,0,0,0.5)] md:hidden">
+<a class="flex flex-col items-center justify-center text-outline-variant opacity-60 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">map</span>
+<span class="font-label-caps text-label-caps">JOURNEY</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant opacity-60 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-caps text-label-caps">JOURNAL</span>
+</a>
+<!-- Active State: HOME mapping to Dashboard intent -->
+<a class="flex flex-col items-center justify-center text-primary-container drop-shadow-[0_0_8px_rgba(0,229,255,0.6)] font-bold scale-110 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant opacity-60 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">query_stats</span>
+<span class="font-label-caps text-label-caps">STATS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant opacity-60 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label-caps text-label-caps">PROFILE</span>
+</a>
+</nav>
+<!-- Desktop Navigation (Hidden on Mobile, simplified for structural adherence) -->
+<nav class="hidden md:flex fixed top-0 left-1/2 transform -translate-x-1/2 z-50 mt-4 px-6 py-2 rounded-full glass-card gap-8 items-center justify-center">
+<a class="font-label-caps text-label-caps text-outline-variant hover:text-primary transition-colors" href="#">JOURNEY</a>
+<a class="font-label-caps text-label-caps text-outline-variant hover:text-primary transition-colors" href="#">JOURNAL</a>
+<a class="font-label-caps text-label-caps text-primary-container drop-shadow-[0_0_8px_rgba(0,229,255,0.6)] font-bold" href="#">HOME</a>
+<a class="font-label-caps text-label-caps text-outline-variant hover:text-primary transition-colors" href="#">STATS</a>
+<a class="font-label-caps text-label-caps text-outline-variant hover:text-primary transition-colors" href="#">PROFILE</a>
+</nav>
+</body></html>

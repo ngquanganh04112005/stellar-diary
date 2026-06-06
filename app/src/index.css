@@ -1,0 +1,328 @@
+@import "tailwindcss";
+
+/* ============================
+   CELESTIAL ODYSSEY — DESIGN SYSTEM
+   ============================ */
+
+/* --- Custom Theme (TailwindCSS v4) --- */
+@theme {
+  /* Colors — Deep Space Dark Mode */
+  --color-void: #0D0D12;
+  --color-surface: #121414;
+  --color-surface-dim: #121414;
+  --color-surface-bright: #37393a;
+  --color-surface-container-lowest: #0c0f0f;
+  --color-surface-container-low: #1a1c1c;
+  --color-surface-container: #1e2020;
+  --color-surface-container-high: #282a2b;
+  --color-surface-container-highest: #333535;
+  --color-surface-variant: #333535;
+
+  --color-on-surface: #e2e2e2;
+  --color-on-surface-variant: #bac9cc;
+  --color-inverse-surface: #e2e2e2;
+  --color-inverse-on-surface: #2f3131;
+
+  --color-primary: #c3f5ff;
+  --color-primary-container: #00e5ff;
+  --color-primary-fixed: #9cf0ff;
+  --color-primary-fixed-dim: #00daf3;
+  --color-on-primary: #00363d;
+  --color-on-primary-container: #00626e;
+  --color-on-primary-fixed: #001f24;
+  --color-on-primary-fixed-variant: #004f58;
+  --color-inverse-primary: #006875;
+
+  --color-secondary: #ebb2ff;
+  --color-secondary-container: #721199;
+  --color-secondary-fixed: #f8d8ff;
+  --color-secondary-fixed-dim: #ebb2ff;
+  --color-on-secondary: #520071;
+  --color-on-secondary-container: #e299ff;
+  --color-on-secondary-fixed: #320047;
+  --color-on-secondary-fixed-variant: #721199;
+
+  --color-tertiary: #efebf3;
+  --color-tertiary-container: #d2cfd6;
+  --color-tertiary-fixed: #e4e1e9;
+  --color-tertiary-fixed-dim: #c8c5cd;
+  --color-on-tertiary: #303035;
+  --color-on-tertiary-container: #59585e;
+  --color-on-tertiary-fixed: #1b1b20;
+  --color-on-tertiary-fixed-variant: #47464c;
+
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-on-error: #690005;
+  --color-on-error-container: #ffdad6;
+
+  --color-outline: #849396;
+  --color-outline-variant: #3b494c;
+  --color-surface-tint: #00daf3;
+  --color-background: #121414;
+  --color-on-background: #e2e2e2;
+
+  /* Spacing — 8px base grid */
+  --spacing-base: 8px;
+  --spacing-stack-sm: 12px;
+  --spacing-gutter: 16px;
+  --spacing-stack-md: 20px;
+  --spacing-container-padding: 24px;
+  --spacing-stack-lg: 40px;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-DEFAULT: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Font Families */
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+/* --- Base Styles --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+/* Starfield Background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(235, 178, 255, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Hide scrollbar for clean mobile look */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* --- Typography Utilities --- */
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+}
+
+.text-display-lg-mobile {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38px;
+}
+
+.text-headline-md {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.text-body-md {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.text-label-caps {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.text-stats-number {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+/* --- Glass Effects --- */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+}
+
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+}
+
+.glass-badge-unlocked {
+  background-color: rgba(0, 229, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15), inset 0 0 10px rgba(0, 229, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-badge-unlocked:hover {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.3), inset 0 0 15px rgba(0, 229, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.glass-badge-locked {
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+/* --- Glow Effects --- */
+.glow-text {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.neon-glow {
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+.neon-glow-intense {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), inset 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+/* --- Orbital Progress Ring --- */
+.orbital-ring {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* --- Animations --- */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.path-line {
+  stroke-dasharray: 10;
+  animation: dash 20s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px rgba(0, 229, 255, 0.3); }
+  50% { box-shadow: 0 0 60px rgba(0, 229, 255, 0.5); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* --- Material Symbols --- */
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* --- Safe Area for mobile bottom nav --- */
+.pb-safe-bottom {
+  padding-bottom: calc(80px + env(safe-area-inset-bottom, 24px));
+}
+
+.bottom-nav-height {
+  height: calc(72px + env(safe-area-inset-bottom, 16px));
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+/* --- 3D Spinning Planet --- */
+.globe-sphere {
+  box-shadow: 
+    inset -15px -15px 45px rgba(0, 0, 0, 0.9),  /* Vùng tối */
+    inset 15px 15px 35px rgba(255, 255, 255, 0.25), /* Vùng sáng mặt trời */
+    0 0 25px rgba(0, 229, 255, 0.4);            /* Hào quang bầu khí quyển */
+}
+
+.globe-texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-size: 50% 100%;
+  background-repeat: repeat-x;
+  animation: spin-globe 20s linear infinite;
+}
+
+.globe-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.55) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+@keyframes spin-globe {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

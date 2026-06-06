@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Journey to the Stars - Achievements</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Sora:wght@300;400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#333535",
+                      "on-primary-fixed-variant": "#004f58",
+                      "on-secondary-container": "#e299ff",
+                      "surface-container-high": "#282a2b",
+                      "on-surface": "#e2e2e2",
+                      "on-primary": "#00363d",
+                      "error": "#ffb4ab",
+                      "on-tertiary-container": "#59585e",
+                      "surface-tint": "#00daf3",
+                      "primary-fixed-dim": "#00daf3",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-highest": "#333535",
+                      "surface-bright": "#37393a",
+                      "tertiary-fixed": "#e4e1e9",
+                      "surface-dim": "#121414",
+                      "on-secondary-fixed": "#320047",
+                      "on-error": "#690005",
+                      "on-secondary": "#520071",
+                      "secondary-container": "#721199",
+                      "inverse-surface": "#e2e2e2",
+                      "surface-container-low": "#1a1c1c",
+                      "background": "#121414",
+                      "on-primary-fixed": "#001f24",
+                      "error-container": "#93000a",
+                      "on-tertiary-fixed": "#1b1b20",
+                      "surface-container": "#1e2020",
+                      "surface": "#121414",
+                      "outline-variant": "#3b494c",
+                      "primary-container": "#00e5ff",
+                      "on-surface-variant": "#bac9cc",
+                      "inverse-on-surface": "#2f3131",
+                      "on-tertiary": "#303035",
+                      "on-secondary-fixed-variant": "#721199",
+                      "on-primary-container": "#00626e",
+                      "secondary-fixed": "#f8d8ff",
+                      "on-tertiary-fixed-variant": "#47464c",
+                      "secondary": "#ebb2ff",
+                      "outline": "#849396",
+                      "primary": "#c3f5ff",
+                      "tertiary-fixed-dim": "#c8c5cd",
+                      "inverse-primary": "#006875",
+                      "tertiary": "#efebf3",
+                      "on-background": "#e2e2e2",
+                      "secondary-fixed-dim": "#ebb2ff",
+                      "tertiary-container": "#d2cfd6",
+                      "surface-container-lowest": "#0c0f0f",
+                      "primary-fixed": "#9cf0ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "40px",
+                      "gutter": "16px",
+                      "stack-sm": "12px",
+                      "stack-md": "20px",
+                      "container-padding": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Space Mono"],
+                      "stats-number": ["Sora"],
+                      "display-lg-mobile": ["Sora"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "display-lg": ["Sora"],
+                      "headline-md": ["Sora"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                      "stats-number": ["20px", { "lineHeight": "24px", "fontWeight": "300" }],
+                      "display-lg-mobile": ["32px", { "lineHeight": "38px", "fontWeight": "700" }],
+                      "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                      "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                      "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        /* Base Void Style */
+        body {
+            background-color: #121414;
+            background-image: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.03) 0%, transparent 60%);
+            background-attachment: fixed;
+            color: #e2e2e2;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background-image: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+        }
+
+        .glass-badge-unlocked {
+            background-color: rgba(0, 229, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.15), inset 0 0 10px rgba(0, 229, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-badge-unlocked:hover {
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.3), inset 0 0 15px rgba(0, 229, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .glass-badge-locked {
+            background-color: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        /* Orbital Progress */
+        .orbital-ring {
+            stroke-dasharray: 283; /* 2 * pi * r (45) */
+            stroke-dashoffset: 283;
+            transform-origin: 50% 50%;
+            transform: rotate(-90deg);
+            transition: stroke-dashoffset 1.5s ease-in-out;
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col pt-20 pb-32 overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 backdrop-blur-xl bg-white/5 border-b border-white/10 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary-container/30">
+<img alt="Astronaut profile picture" class="w-full h-full object-cover" data-alt="A close-up portrait of an astronaut inside a futuristic, high-tech helmet. The visor reflects a vast, glowing neon nebula in deep electric blues and cyans. The lighting is dramatic and cinematic, highlighting the intricate details of the sleek spacesuit. The mood is visionary and isolated, capturing the essence of deep space exploration in a dark, atmospheric setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWz_lCp4PDaj1ihhSOfjOa0Q7ezndf14ILHramEih_U7xkbCGGKPvAk2SkNr19kupzQ9MK7keh6t91R4Yr34Y74WGv-MVSw9XA7eNNQ3vIwCHsk3LutJA53Rz_oK01-bqkC8lXrT3ZnjyEYfZ15d3Kwj5S9bfuX9YDqEWdcjJhbTrjibEv2nfWl_3fFQ7VzxpI1nfT1K_y8uYOCZjNRSCKSUydIqX9UOAA2DisxSFE38MzDPTC47t1NJTxBC2o1DJKYSoOiSLVB0GQ"/>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary-fixed-dim tracking-widest font-bold">MISSION CONTROL</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary-fixed-dim">rocket_launch</span>
+</button>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow px-container-padding flex flex-col gap-stack-lg max-w-5xl mx-auto w-full mt-stack-md">
+<!-- Header Section -->
+<section class="text-center mt-stack-md">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-base text-glow">Command Commendations</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Your journey chronicled in light. Every badge represents a completed phase of your mission through the cosmos.</p>
+</section>
+<!-- Bento Grid: Commendations -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Badge: Unlocked (Earth) -->
+<div class="glass-badge-unlocked rounded-xl p-6 flex flex-col items-center justify-center text-center gap-stack-sm aspect-square relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container/5 rounded-xl"></div>
+<div class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center border border-primary-container/50 shadow-[0_0_15px_rgba(0,229,255,0.4)] relative z-10">
+<span class="material-symbols-outlined text-3xl text-primary-container drop-shadow-[0_0_8px_rgba(0,229,255,0.8)]" style="font-variation-settings: 'FILL' 1;">public</span>
+</div>
+<div class="relative z-10">
+<h3 class="font-label-caps text-label-caps text-primary-container mb-1">First Step on Earth</h3>
+<p class="text-[10px] text-on-surface-variant">Log Initialized</p>
+</div>
+</div>
+<!-- Badge: Unlocked (Stardust) -->
+<div class="glass-badge-unlocked rounded-xl p-6 flex flex-col items-center justify-center text-center gap-stack-sm aspect-square relative overflow-hidden">
+<div class="absolute inset-0 bg-secondary/5 rounded-xl"></div>
+<div class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center border border-secondary/50 shadow-[0_0_15px_rgba(235,178,255,0.4)] relative z-10">
+<span class="material-symbols-outlined text-3xl text-secondary drop-shadow-[0_0_8px_rgba(235,178,255,0.8)]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="relative z-10">
+<h3 class="font-label-caps text-label-caps text-secondary mb-1">Stardust Collector</h3>
+<p class="text-[10px] text-on-surface-variant">7 Days Streak</p>
+</div>
+</div>
+<!-- Badge: Locked (Moon) -->
+<div class="glass-badge-locked rounded-xl p-6 flex flex-col items-center justify-center text-center gap-stack-sm aspect-square">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-3xl text-outline">dark_mode</span>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-1">Moon Explorer</h3>
+<p class="text-[10px] text-outline-variant">Requires 30 Entries</p>
+</div>
+<span class="material-symbols-outlined text-sm text-outline absolute top-4 right-4">lock</span>
+</div>
+<!-- Badge: Locked (Mars) -->
+<div class="glass-badge-locked rounded-xl p-6 flex flex-col items-center justify-center text-center gap-stack-sm aspect-square">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-3xl text-outline">explore</span>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-1">Mars Traveler</h3>
+<p class="text-[10px] text-outline-variant">Requires 100 Entries</p>
+</div>
+<span class="material-symbols-outlined text-sm text-outline absolute top-4 right-4">lock</span>
+</div>
+<!-- Badge: Locked (Nebula) -->
+<div class="glass-badge-locked rounded-xl p-6 flex flex-col items-center justify-center text-center gap-stack-sm aspect-square">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-3xl text-outline">blur_on</span>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-1">Nebula Navigator</h3>
+<p class="text-[10px] text-outline-variant">Unknown Sector</p>
+</div>
+<span class="material-symbols-outlined text-sm text-outline absolute top-4 right-4">lock</span>
+</div>
+</section>
+<!-- Bento Grid: Statistics -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter mt-stack-md">
+<!-- Stat Card 1 -->
+<div class="glass-panel rounded-xl p-6 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Total Planets Visited</span>
+<span class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary-container text-glow">02</span>
+</div>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="rgba(255,255,255,0.1)" stroke-width="4"></circle>
+<!-- 2/5 progress approx -->
+<circle class="orbital-ring" cx="50" cy="50" fill="none" r="45" stroke="#00e5ff" stroke-linecap="round" stroke-width="4" style="stroke-dashoffset: 170;"></circle>
+</svg>
+<span class="material-symbols-outlined text-primary-container absolute">language</span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="glass-panel rounded-xl p-6 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Total Tasks Completed</span>
+<span class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-secondary text-glow">47</span>
+</div>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="rgba(255,255,255,0.1)" stroke-width="4"></circle>
+<!-- 47/100 progress approx -->
+<circle class="orbital-ring" cx="50" cy="50" fill="none" r="45" stroke="#ebb2ff" stroke-linecap="round" stroke-width="4" style="stroke-dashoffset: 150;"></circle>
+</svg>
+<span class="material-symbols-outlined text-secondary absolute">task_alt</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 pt-4 backdrop-blur-[40px] bg-white/5 border-t border-white/10 shadow-[0_-4px_20px_rgba(0,0,0,0.5)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-outline-variant opacity-60 hover:text-primary transition-colors hover:opacity-80" href="#">
+<span class="material-symbols-outlined mb-1">map</span>
+<span class="font-label-caps text-label-caps text-[10px]">JOURNEY</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant opacity-60 hover:text-primary transition-colors hover:opacity-80" href="#">
+<span class="material-symbols-outlined mb-1">dashboard</span>
+<span class="font-label-caps text-label-caps text-[10px]">JOURNAL</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant opacity-60 hover:text-primary transition-colors hover:opacity-80" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps text-[10px]">HOME</span>
+</a>
+<!-- Active Tab: STATS (Matches Achievements/Stats intent) -->
+<a class="flex flex-col items-center justify-center text-primary-container drop-shadow-[0_0_8px_rgba(0,229,255,0.6)] font-bold scale-110 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+<span class="font-label-caps text-label-caps text-[10px]">STATS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline-variant opacity-60 hover:text-primary transition-colors hover:opacity-80" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-label-caps text-[10px]">PROFILE</span>
+</a>
+</nav>
+</body></html>

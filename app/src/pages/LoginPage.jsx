@@ -135,10 +135,10 @@ export default function LoginPage({ onLogin }) {
             </span>
           </div>
           <h1 className="text-display-lg-mobile text-on-surface tracking-widest uppercase font-bold glow-text mt-2">
-            CELESTIAL
+            STELLAR DIARY
           </h1>
           <p className="text-label-caps text-primary-container text-[11px] tracking-[0.25em]">
-            ODYSSEY JOURNAL
+            NHẬT KÝ KHÁM PHÁ VŨ TRỤ
           </p>
         </header>
 

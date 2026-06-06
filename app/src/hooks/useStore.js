@@ -8,6 +8,18 @@ function getCurrentUserId() {
   return parseInt(localStorage.getItem('currentUserId') || '1', 10)
 }
 
+function getDateKey(date = new Date()) {
+  const d = date instanceof Date ? date : new Date(date)
+  const year = d.getFullYear()
+  const month = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+function isJournalObjective(objective) {
+  return objective?.title?.toLowerCase().includes('nhật ký')
+}
+
 // ============================================
 // MILESTONES — Các mốc hành trình
 // ============================================
@@ -53,6 +65,7 @@ export function useProfile() {
 // ============================================
 export function useEntries() {
   const userId = getCurrentUserId()
+  const today = getDateKey()
 
   const entries = useLiveQuery(
     () =>
@@ -63,10 +76,25 @@ export function useEntries() {
         .sortBy('createdAt'),
     [userId]
   )
+  const profile = useLiveQuery(() => db.userProfile.get(userId), [userId])
+  const hasEntryToday = Boolean(
+    profile?.lastEntryDate === today ||
+      entries?.some((entry) => getDateKey(entry.createdAt) === today)
+  )
 
   const addEntry = async ({ title, content, mood, category }) => {
     const now = new Date()
-    const today = now.toISOString().split('T')[0]
+    const today = getDateKey(now)
+    const profile = await db.userProfile.get(userId)
+    const todayEntry = await db.entries
+      .where('userId')
+      .equals(userId)
+      .filter((entry) => getDateKey(entry.createdAt) === today)
+      .first()
+
+    if (profile?.lastEntryDate === today || todayEntry) {
+      throw new Error('ENTRY_ALREADY_EXISTS_TODAY')
+    }
 
     // Thêm entry
     await db.entries.add({
@@ -79,7 +107,6 @@ export function useEntries() {
     })
 
     // Cập nhật profile
-    const profile = await db.userProfile.get(userId)
     const lastDate = profile.lastEntryDate
     let newStreak = profile.currentStreak
 
@@ -118,7 +145,7 @@ export function useEntries() {
     await checkAchievements(newTotalEntries)
   }
 
-  return { entries, addEntry }
+  return { entries, addEntry, hasEntryToday, canWriteToday: !hasEntryToday }
 }
 
 // ============================================
@@ -126,7 +153,7 @@ export function useEntries() {
 // ============================================
 export function useObjectives() {
   const userId = getCurrentUserId()
-  const today = new Date().toISOString().split('T')[0]
+  const today = getDateKey()
 
   const objectives = useLiveQuery(
     () =>
@@ -187,10 +214,11 @@ export function useObjectives() {
     }
   }
 
-  const completedCount = objectives?.filter((o) => o.completed).length || 0
-  const totalCount = objectives?.length || 0
+  const visibleObjectives = objectives?.filter((o) => !isJournalObjective(o)) || []
+  const completedCount = visibleObjectives.filter((o) => o.completed).length
+  const totalCount = visibleObjectives.length
 
-  return { objectives, completeObjective, resetObjectives, completedCount, totalCount }
+  return { objectives: visibleObjectives, completeObjective, resetObjectives, completedCount, totalCount }
 }
 
 // ============================================

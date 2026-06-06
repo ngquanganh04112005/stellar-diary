@@ -9,7 +9,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
+      includeAssets: ['image_planet/logo.png', 'apple-touch-icon.png'],
       manifest: {
         name: 'Stellar Diary - Nhật ký Vũ trụ',
         short_name: 'Stellar Diary',

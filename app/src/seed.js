@@ -194,7 +194,6 @@ export async function seedUser(userId, username) {
   await db.objectives.bulkAdd([
     { title: 'Ôn tập tiếng Anh buổi sáng', subtitle: 'Từ vựng & Ngữ pháp', xp: 50, completed: false, date: today, userId },
     { title: 'Tập luyện thể lực', subtitle: '20 phút', xp: 75, completed: false, date: today, userId },
-    { title: 'Viết nhật ký cuối ngày', subtitle: 'Ghi lại suy nghĩ', xp: 100, completed: false, date: today, userId },
     { title: 'Luyện nói và nghe', subtitle: 'Cải thiện giao tiếp', xp: 60, completed: false, date: today, userId },
   ])
 
@@ -280,7 +279,6 @@ export async function seedDatabase() {
     await db.objectives.bulkAdd([
       { title: 'Ôn tập tiếng Anh buổi sáng', subtitle: 'Từ vựng & Ngữ pháp', xp: 50, completed: false, date: today, userId: currentUserId },
       { title: 'Tập luyện thể lực', subtitle: '20 phút', xp: 75, completed: false, date: today, userId: currentUserId },
-      { title: 'Viết nhật ký cuối ngày', subtitle: 'Ghi lại suy nghĩ', xp: 100, completed: false, date: today, userId: currentUserId },
       { title: 'Luyện nói và nghe', subtitle: 'Cải thiện giao tiếp', xp: 60, completed: false, date: today, userId: currentUserId },
     ])
   }

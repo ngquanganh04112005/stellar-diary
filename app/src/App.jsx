@@ -23,12 +23,11 @@ export default function App() {
   if (!ready) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <span
-          className="material-symbols-outlined text-5xl text-primary-container animate-bounce"
-          style={{ fontVariationSettings: "'FILL' 1" }}
-        >
-          rocket_launch
-        </span>
+        <img
+          src="/image_planet/logo.png"
+          alt="Stellar Diary"
+          className="h-20 w-20 rounded-full object-cover shadow-[0_0_32px_rgba(0,229,255,0.35)] animate-float"
+        />
         <p className="text-label-caps text-on-surface-variant tracking-widest">
           ĐANG KHỞI ĐỘNG HỆ THỐNG...
         </p>

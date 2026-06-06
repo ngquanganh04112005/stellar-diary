@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEntries } from '../hooks/useStore'
 
@@ -20,25 +20,65 @@ const CATEGORIES = [
 
 export default function NewEntryPage() {
   const navigate = useNavigate()
-  const { addEntry } = useEntries()
+  const { addEntry, hasEntryToday } = useEntries()
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [mood, setMood] = useState('stardust')
   const [category, setCategory] = useState('general')
   const [saving, setSaving] = useState(false)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (!hasEntryToday) return
+    const timer = setTimeout(() => navigate('/'), 1600)
+    return () => clearTimeout(timer)
+  }, [hasEntryToday, navigate])
 
   const handleSave = async () => {
-    if (!title.trim() || !content.trim()) return
+    if (!title.trim() || !content.trim() || hasEntryToday) return
     setSaving(true)
+    setError('')
     try {
       await addEntry({ title, content, mood, category })
       navigate('/')
     } catch (err) {
+      if (err.message === 'ENTRY_ALREADY_EXISTS_TODAY') {
+        setError('Bạn đã viết nhật ký hôm nay. Hãy quay lại vào ngày mai.')
+      } else {
+        setError('Không thể lưu nhật ký. Vui lòng thử lại.')
+      }
       console.error('Lỗi khi lưu:', err)
     } finally {
       setSaving(false)
     }
+  }
+
+  if (hasEntryToday) {
+    return (
+      <div className="flex flex-col gap-6">
+        <div className="flex items-center justify-between">
+          <button
+            onClick={() => navigate('/')}
+            className="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center border border-outline-variant hover:bg-surface-container-high transition-colors"
+          >
+            <span className="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+          </button>
+          <h2 className="text-headline-md text-on-surface">Nhật ký hôm nay</h2>
+          <div className="w-10" />
+        </div>
+
+        <div className="glass-card p-6 text-center">
+          <span className="material-symbols-outlined text-primary-container text-4xl mb-3">
+            task_alt
+          </span>
+          <h3 className="text-headline-md text-on-surface mb-2">Bạn đã viết nhật ký hôm nay</h3>
+          <p className="text-body-md text-on-surface-variant">
+            Mỗi ngày chỉ viết được 1 lần. Hãy quay lại vào ngày mai.
+          </p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -135,11 +175,17 @@ export default function NewEntryPage() {
       </div>
 
       {/* Save Button */}
+      {error && (
+        <p className="text-error text-sm text-center bg-error-container/20 border border-error/30 rounded-lg px-4 py-3">
+          {error}
+        </p>
+      )}
+
       <button
         onClick={handleSave}
-        disabled={!title.trim() || !content.trim() || saving}
+        disabled={!title.trim() || !content.trim() || saving || hasEntryToday}
         className={`w-full py-4 rounded-xl font-bold text-label-caps transition-all active:scale-[0.98] ${
-          title.trim() && content.trim() && !saving
+          title.trim() && content.trim() && !saving && !hasEntryToday
             ? 'bg-gradient-to-r from-[#00daf3] to-[#00e5ff] text-on-primary shadow-[0_0_15px_rgba(0,229,255,0.4)] hover:shadow-[0_0_25px_rgba(0,229,255,0.6)]'
             : 'bg-surface-variant text-outline cursor-not-allowed'
         }`}

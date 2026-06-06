@@ -3,15 +3,18 @@ import { useNavigate } from 'react-router-dom'
 import StatCard from '../components/StatCard'
 import GlassCard from '../components/GlassCard'
 import Globe3D from '../components/Globe3D'
-import { useStats, useObjectives } from '../hooks/useStore'
+import { useStats, useObjectives, useEntries } from '../hooks/useStore'
 
 export default function HomePage() {
   const navigate = useNavigate()
   const { profile, journeyProgress, currentMilestone, totalXp, milestones } = useStats()
   const { objectives, completeObjective, completedCount, totalCount } = useObjectives()
+  const { hasEntryToday } = useEntries()
   const [selectedObjectives, setSelectedObjectives] = useState([])
+  const visibleObjectives = objectives?.filter((obj) => !obj.title.toLowerCase().includes('nhật ký')) || []
 
   const currentMilestoneIndex = milestones ? milestones.findIndex((m) => profile?.totalEntries < m.entries) : -1
+  const rocketPosition = `calc(${journeyProgress}% + ${0.5 - journeyProgress / 100}rem)`
   const currentLocation = currentMilestoneIndex > 0 
     ? milestones[currentMilestoneIndex - 1].name 
     : currentMilestoneIndex === 0 
@@ -109,18 +112,21 @@ export default function HomePage() {
           </span>
         </div>
         <div className="relative pt-8 pb-4">
-          <div className="absolute top-1/2 left-0 w-full h-px bg-white/10 -translate-y-1/2 overflow-hidden">
+          <div className="absolute top-1/2 left-2 right-2 h-px bg-white/10 -translate-y-1/2 overflow-hidden">
             <div
               className="h-full bg-primary-container shadow-[0_0_10px_rgba(0,229,255,0.8)] transition-all duration-1000"
               style={{ width: `${journeyProgress}%` }}
             />
           </div>
           <div className="flex justify-between relative z-10">
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center gap-2 -translate-x-[6px]">
               <div className="w-4 h-4 rounded-full bg-primary-container shadow-[0_0_15px_rgba(0,229,255,1)]" />
               <span className="text-label-caps text-on-surface-variant text-[10px]">TRÁI ĐẤT</span>
             </div>
-            <div className="flex flex-col items-center gap-2 absolute -translate-x-1/2 transition-all duration-1000" style={{ left: `${journeyProgress}%` }}>
+            <div
+              className="flex flex-col items-center gap-2 absolute -translate-x-1/2 transition-all duration-1000"
+              style={{ left: rocketPosition }}
+            >
               <span
                 className="material-symbols-outlined text-primary-container -mt-6 animate-bounce text-[20px]"
                 style={{ fontVariationSettings: "'FILL' 1" }}
@@ -140,7 +146,7 @@ export default function HomePage() {
       <section className="flex flex-col gap-4">
         <h3 className="text-headline-md text-on-surface">Nhiệm vụ hàng ngày</h3>
 
-        {objectives?.map((obj) => {
+        {visibleObjectives.map((obj) => {
           const isSelected = selectedObjectives.includes(obj.id)
           return (
             <GlassCard
@@ -150,7 +156,7 @@ export default function HomePage() {
                   ? 'opacity-60' 
                   : isSelected 
                     ? 'border-primary-container bg-primary-container/10' 
-                    : 'hover:bg-white/5'
+                    : ''
               }`}
               onClick={() => !obj.completed && toggleObjective(obj.id)}
             >
@@ -158,10 +164,10 @@ export default function HomePage() {
                 <div className={`w-6 h-6 rounded-full border flex items-center justify-center transition-colors ${
                   obj.completed || isSelected
                     ? 'border-primary-container bg-primary-container/20'
-                    : 'border-primary group-hover:bg-primary/20'
+                    : 'border-primary'
                 }`}>
                   <span className={`material-symbols-outlined text-primary text-[16px] transition-opacity ${
-                    obj.completed || isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    obj.completed || isSelected ? 'opacity-100' : 'opacity-0'
                   }`} style={obj.completed || isSelected ? { fontVariationSettings: "'FILL' 1" } : {}}>
                     check
                   </span>
@@ -185,14 +191,17 @@ export default function HomePage() {
           </button>
         )}
 
-        {profile.lastEntryDate !== new Date().toISOString().split('T')[0] && (
-          <button
-            onClick={() => navigate('/new-entry')}
-            className="w-full py-4 mt-2 rounded-xl bg-gradient-to-r from-[#00daf3] to-[#00e5ff] text-on-primary font-bold text-label-caps shadow-[0_0_15px_rgba(0,229,255,0.4)] hover:shadow-[0_0_25px_rgba(0,229,255,0.6)] transition-shadow active:scale-[0.98]"
-          >
-            GHI NHẬT KÝ MỚI
-          </button>
-        )}
+        <button
+          onClick={() => !hasEntryToday && navigate('/new-entry')}
+          disabled={hasEntryToday}
+          className={`w-full py-4 mt-2 rounded-xl font-bold text-label-caps transition-all active:scale-[0.98] ${
+            hasEntryToday
+              ? 'bg-surface-variant text-outline cursor-not-allowed border border-outline-variant'
+              : 'bg-gradient-to-r from-[#00daf3] to-[#00e5ff] text-on-primary shadow-[0_0_15px_rgba(0,229,255,0.4)] hover:shadow-[0_0_25px_rgba(0,229,255,0.6)]'
+          }`}
+        >
+          {hasEntryToday ? 'ĐÃ VIẾT NHẬT KÝ HÔM NAY' : 'VIẾT NHẬT KÝ'}
+        </button>
       </section>
     </div>
   )
